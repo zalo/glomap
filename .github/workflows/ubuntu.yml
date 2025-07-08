@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - lpanaf/migrate_colmap
   pull_request:
     types: [ assigned, opened, synchronize, reopened ]
   release:
@@ -190,6 +191,20 @@ jobs:
           sleep 3
           cd build
           ctest --output-on-failure -E .+colmap_.*
+
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        if: ${{ matrix.config.cudaEnabled }}
+        with:
+          name: glomap-x64-ubuntu-cuda
+          path: build/install
+
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        if: ${{ !matrix.config.cudaEnabled }}
+        with:
+          name: glomap-x64-ubuntu-nocuda
+          path: build/install
 
       - name: Cleanup compiler cache
         run: |
