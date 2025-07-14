@@ -221,14 +221,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: ${{ matrix.config.cudaEnabled }}
         with:
-          name: glomap-x64-ubuntu-cuda
-          path: /home/runner/work/glomap/glomap/build
-
-      - name: Upload non-CUDA package
-        uses: actions/upload-artifact@v4
-        if: ${{ !matrix.config.cudaEnabled }}
-        with:
-          name: glomap-x64-ubuntu-nocuda
+          name: glomap-x64-ubuntu-hascuda-${{ matrix.config.cudaEnabled }}-${{ matrix.config.os }}-${{ matrix.config.cmakeBuildType }}-${{ matrix.config.asanEnabled }}
           path: /home/runner/work/glomap/glomap/build
 
       - name: Cleanup compiler cache
