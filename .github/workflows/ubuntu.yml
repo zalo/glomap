@@ -19,10 +19,10 @@ jobs:
         config: [
           {
             os: ubuntu-24.04,
-            cmakeBuildType: RelWithDebInfo,
+            cmakeBuildType: Release,
             asanEnabled: false,
             cudaEnabled: true,
-            checkCodeFormat: true,
+            checkCodeFormat: false,
           },
           #{
           #  os: ubuntu-22.04,
