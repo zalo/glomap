@@ -174,7 +174,7 @@ jobs:
           rm -rf ${CMAKE_DIR}*
 
       - name: Configure and build
-        if: ${{ matrix.config.os != 'ubuntu-24.04' }}
+        if: ${{ matrix.config.os == 'ubuntu-24.04' }}
         run: |
           set -x
           cmake --version
@@ -191,7 +191,7 @@ jobs:
           ninja -k 10000
 
       - name: Configure and build
-        if: ${{ matrix.config.os != 'ubuntu-22.04' }}
+        if: ${{ matrix.config.os == 'ubuntu-22.04' }}
         run: |
           set -x
           cmake --version
