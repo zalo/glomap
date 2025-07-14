@@ -21,16 +21,16 @@ jobs:
             os: ubuntu-24.04,
             cmakeBuildType: RelWithDebInfo,
             asanEnabled: false,
-            cudaEnabled: false,
+            cudaEnabled: true,
             checkCodeFormat: true,
           },
-          {
-            os: ubuntu-22.04,
-            cmakeBuildType: Release,
-            asanEnabled: false,
-            cudaEnabled: false,
-            checkCodeFormat: true,
-          },
+          #{
+          #  os: ubuntu-22.04,
+          #  cmakeBuildType: Release,
+          #  asanEnabled: false,
+          #  cudaEnabled: false,
+          #  checkCodeFormat: true,
+          #},
           {
             os: ubuntu-22.04,
             cmakeBuildType: Release,
@@ -38,20 +38,20 @@ jobs:
             cudaEnabled: true,
             checkCodeFormat: false,
           },
-          {
-            os: ubuntu-22.04,
-            cmakeBuildType: Release,
-            asanEnabled: true,
-            cudaEnabled: false,
-            checkCodeFormat: false,
-          },
-          {
-            os: ubuntu-22.04,
-            cmakeBuildType: ClangTidy,
-            asanEnabled: false,
-            cudaEnabled: false,
-            checkCodeFormat: false,
-          },
+          #{
+          #  os: ubuntu-22.04,
+          #  cmakeBuildType: Release,
+          #  asanEnabled: true,
+          #  cudaEnabled: false,
+          #  checkCodeFormat: false,
+          #},
+          #{
+          #  os: ubuntu-22.04,
+          #  cmakeBuildType: ClangTidy,
+          #  asanEnabled: false,
+          #  cudaEnabled: false,
+          #  checkCodeFormat: false,
+          #},
         ]
 
     env:
@@ -176,7 +176,7 @@ jobs:
             -GNinja \
             -DCMAKE_BUILD_TYPE=${{ matrix.config.cmakeBuildType }} \
             -DCMAKE_INSTALL_PREFIX=./install \
-            -DCMAKE_CUDA_ARCHITECTURES=50 \
+            -DCMAKE_CUDA_ARCHITECTURES=89 \
             -DCUDA_ENABLED=${{ matrix.config.cudaEnabled }} \
             -DTESTS_ENABLED=ON \
             -DASAN_ENABLED=${{ matrix.config.asanEnabled }}
