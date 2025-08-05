@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - lpanaf/migrate_colmap
   pull_request:
     types: [ assigned, opened, synchronize, reopened ]
   release:
@@ -23,13 +24,13 @@ jobs:
             testsEnabled: true,
             exportPackage: true,
           },
-          {
-            os: windows-2022,
-            cmakeBuildType: Release,
-            cudaEnabled: false,
-            testsEnabled: true,
-            exportPackage: true,
-          },
+          #{
+          #  os: windows-2022,
+          #  cmakeBuildType: Release,
+          #  cudaEnabled: false,
+          #  testsEnabled: true,
+          #  exportPackage: true,
+          #},
         ]
 
     env:
@@ -162,7 +163,7 @@ jobs:
 
       - name: Upload package
         uses: actions/upload-artifact@v4
-        if: ${{ matrix.config.exportPackage && matrix.config.cudaEnabled }}
+        if: ${{ always() }}
         with:
           name: glomap-x64-windows-cuda
           path: build/install
